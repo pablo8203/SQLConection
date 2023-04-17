@@ -9,36 +9,30 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
+/*
  Procedimiento para conectar la DB y realizar una consulta de las tablas.
  */
 public class PruebaC {
-
- 
     Connection conexion = null;
     Statement stm = null;
    
     public static void main(String[] args) {
-      
         Scanner sc = new Scanner(System.in);
         PruebaC m = new PruebaC();
 
         m.conectar();    //CONECTO LA BBDD ANTES DE INICIAR EL MENÚ
         boolean salir = false;
         do {
-
             switch (menuPrin()) {
-            	
-            	case 3:
-            		m.eliminarRegistoEmpleados(); //Cuando pulse la opción 3 del menú me llevará a la función ELIMINAR
-            	break;	
+            	case 1:
+            		m.consultarTabla();  //Cuando pulse la opción 1 del menú me llevará a la función AGREGAR
+            		break;
             	case 2:
             		m.agregarTablaEmpleados();    //Cuando pulse la opción 2 del menú me llevará a la función AGREGAR
-                break;
-                case 1:
-                    m.consultaTablaEstudiantes();  //Cuando pulse la opción 1 del menú me llevará a la función AGREGAR
-                    break;
+            		break;
+            	case 3:
+            		m.eliminarRegistoEmpleados(); //Cuando pulse la opción 3 del menú me llevará a la función ELIMINAR
+            		break;	
                 case 0:
                     System.out.println("Vuelva pronto");
                     m.desconectar();               //CUANDO PULSE EL 0 CIERRO LA BBDD Y CIERRO LA APL.
@@ -51,7 +45,8 @@ public class PruebaC {
         } while (!salir);
 
     } //fin main
-
+//-------------------------------------------------------------------------------
+    
     //MENU PRINCIPAL:
     private static int menuPrin() {
 
@@ -69,42 +64,33 @@ public class PruebaC {
 
         return sc.nextInt(); //Recibo un entero
 
-    }//Fin menuPrin
-   
-   
-   
-   
-     /*MÉTODO QUE CONECTA CON LA BBDD DE MYSQL*/
-    public void conectar() {
+    }//Fin menuPrincipal
 
+//-----------------------------------------------------------------------------------------------
+    
+/*MÉTODO QUE CONECTA CON LA BBDD DE MYSQL*/
+    public void conectar() {
         try {
             Class.forName("com.mysql.jdbc.Driver"); //1. Registrar la ‘clase’ del driver - Este método se usa para registrar la clase que se utilizará como driver.
-
-            /*En esta línea es importante que indiquemos:
-                  el nombre de la base de datos --> qatar2022
-                  El usuario y contraseña que tengamos en nuestro gestor de base de datos MySQL*/
-            
+            /*En esta línea es importante que indiquemos: el nombre de la base de datos --> qatar2022 o cualquier otra
+              El usuario y contraseña que tengamos en nuestro gestor de base de datos MySQL*/
+             conexion = DriverManager.getConnection("jdbc:mysql://localhost/carrito", "root", "pabLo987$");
             //2. Crear el objeto de conexión - Este método se utiliza para establecer conexión con la DB.
             // aca ingresamos el camino y el nombre de la DB
-
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/carrito", "root", "pabLo987$");
-
             System.out.println("**************************************");
             System.out.println(" * CONEXIÓN REALIZADA CORRECTAMENTE * ");
             System.out.println("**************************************");
-           
         } catch (Exception e) {
-
             System.out.println("*****************************************");
             System.out.println(" * NO SE HA PODIDO REALIZAR LA CONEXIÓN * ");
             System.out.println("******************************************");
         }
 
-    }//conectar
+    }// FIN METODO CONECTAR
+//-----------------------------------------------------------------------------------------------
 
-    /*DESCONECTAR LA BBDD*/
+ /*METODO PARA DESCONECTAR LA BBDD*/
     private void desconectar() {
-
         try {
             conexion.close();
             System.out.println("\n************************************************************\n");
@@ -116,10 +102,10 @@ public class PruebaC {
 
     }//desconectar
    
-    ////////////////////////////////////////////////////////////////////////////
-   
-    /*MÉTODO PARA REALIZAR UNA CONSULTA A UNA TABLA MYSQL*/
-        private void consultaTablaEstudiantes() {
+//----------------------------------------------------------------------------------------------   
+
+/*MÉTODO PARA REALIZAR UNA CONSULTA A UNA TABLA MYSQL*/
+        private void consultarTabla() {
         //Realizamos la consulta sql para mostrar todos los datos de la tabla estudiante
         ResultSet r = buscar("select ClienDni,ClienNom,ClienApe from cliente");
        
