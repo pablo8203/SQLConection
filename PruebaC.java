@@ -107,20 +107,15 @@ public class PruebaC {
 /*MÉTODO PARA REALIZAR UNA CONSULTA A UNA TABLA MYSQL*/
         private void consultarTabla() {
         //Realizamos la consulta sql para mostrar todos los datos de la tabla estudiante
-        ResultSet r = buscar("select ClienDni,ClienNom,ClienApe from cliente");
-       
+        ResultSet r = buscar("select ClienDni,ClienNom,ClienApe from cliente");  // Resulset devuelve el resultado de una consulta
         try {
             System.out.println("REGISTROS DE LA TABLA CLIENTES");
-           
-            /*
-            Hacemos un While para recorrer toda la tabla clientes
-            y así poder sacar todos los registros de la tabla
+             /*
+            Hacemos un While para recorrer toda la tabla clientes y así poder sacar todos los registros de la tabla
             */
             while (r.next()) {
-                /*Se muestra los datos que queremos sacar por consola indicandole:
-                        El tipo de dato (int,String...) de cada campo
-                        El nombre de los campos de la tabla entre comillas doble " "
-                */
+                /*Se muestra los datos que queremos sacar por consola indicandole: El tipo de dato (int,String...) de cada campo
+                        El nombre de los campos de la tabla entre comillas doble " " */
                 System.out.println(r.getInt("ClienDni") + " | " + r.getString("ClienNom") + " | " + r.getString("ClienApe"));// + " | " + r.getInt("EmpDep"));
             }
         } catch (SQLException ex) {
@@ -128,13 +123,12 @@ public class PruebaC {
         }
 
     }//mostrarTabla
-   
-       
-        //Este método lo uso para mostrar los datos de una tabla: (executeQuery)
+          
+    //Este método lo uso para mostrar los datos de un registro de la tabla: (executeQuery)
     ResultSet buscar(String sql) {
         try {
-            stm = conexion.createStatement();
-            return stm.executeQuery(sql);
+            stm = conexion.createStatement(); // establezco la sentencia
+            return stm.executeQuery(sql); 
         } catch (SQLException ex) {
             Logger.getLogger(PruebaC.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -149,16 +143,16 @@ public class PruebaC {
         private void agregarTablaEmpleados() {
         	String usuario="root";
             String password="pabLo987$";
-            Scanner k = new Scanner(System.in);//se crea un objeto de tipo Scanner (K) para recibir datos en la consola
+            Scanner sc = new Scanner(System.in);//se crea un objeto de tipo Scanner (K) para recibir datos en la consola
             
             System.out.println("Escriba el DNI del cliente: ");
-            int ClienDni  = k.nextInt(); //asigna la entrada de usuario a la DNI
+            int ClienDni  = sc.nextInt(); //asigna la entrada de usuario a la DNI
             
             System.out.println("Ingrese el nombre del cliente:  ");
-            String ClienNom = k.next(); //asigna la entrada de usuario a la variable nombre
+            String ClienNom = sc.next(); //asigna la entrada de usuario a la variable nombre
             
             System.out.println("Ingrese el apellido del cliente:  ");
-            String ClienApe = k.next(); //asigna la entrada de usuario a la variable nombre
+            String ClienApe = sc.next(); //asigna la entrada de usuario a la variable nombre
                     
             String sql = "insert into cliente (ClienDni,ClienNom,ClienApe) values ('"+ClienDni+"','"+ClienNom+"','"+ClienApe+"')";
             Connection con=null;
@@ -173,24 +167,24 @@ public class PruebaC {
                  System.out.println("Se realizo correctamente la insercion : "+sql);
              else
                  System.out.println("fallo la insercion");
-         // con.close();  //se cierra la conexion a la base de datos
+          con.close();  //se cierra la conexion a la base de datos
         }
         catch(Exception e)
         {
            e.printStackTrace();
         }
-    }//mostrarTablaPropietarios
+    }
    
-        ////////////////////////////////////////////////////////////////////////////
+ //-----------------------------------------------------------------------------------------------------
         
         /*MÉTODO PARA REALIZAR UNA ELIMINACION A UNA TABLA MYSQL*/
             private void eliminarRegistoEmpleados() {
             	String usuario="root";
                 String password="pabLo987$";
-                Scanner k = new Scanner(System.in);//se crea un objeto de tipo Scanner (K) para recibir datos en la consola
+                Scanner sc = new Scanner(System.in);//se crea un objeto de tipo Scanner (SC) para recibir datos en la consola
 
                 System.out.println("Escriba el DNI del cliente a eliminar:...");
-                int ClienDni  = k.nextInt(); //asigna la entrada de usuario a la DNI
+                int ClienDni  = sc.nextInt(); //asigna la entrada de usuario a la DNI
                 
                 String sql ="DELETE FROM cliente WHERE ClienDni = '"+ClienDni+"'";
                 Connection con=null;
@@ -207,5 +201,4 @@ public class PruebaC {
                 }
               }
     
-    
-    }//FIN
+ }//FIN
