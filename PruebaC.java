@@ -31,17 +31,17 @@ public class PruebaC {
             switch (menuPrin()) {
             	
             	case 3:
-            		m.eliminarRegistoEmpleados();
+            		m.eliminarRegistoEmpleados(); //Cuando pulse la opción 3 del menú me llevará a la función ELIMINAR
             	break;	
             	case 2:
-            		m.agregarTablaEmpleados();    //Cuando pulse la opción 2 del menú me llevará a la función consultaTablaEstudiantes
+            		m.agregarTablaEmpleados();    //Cuando pulse la opción 2 del menú me llevará a la función AGREGAR
                 break;
                 case 1:
-                    m.consultaTablaEstudiantes();    //Cuando pulse la opción 1 del menú me llevará a la función consultaTablaEstudiantes
+                    m.consultaTablaEstudiantes();  //Cuando pulse la opción 1 del menú me llevará a la función AGREGAR
                     break;
                 case 0:
-                    System.out.println("Vuelve pronto");
-                    m.desconectar();   //CUANDO PULSO EL 0 CIERRO LA BBDD Y CIERRO LA APL.
+                    System.out.println("Vuelva pronto");
+                    m.desconectar();               //CUANDO PULSE EL 0 CIERRO LA BBDD Y CIERRO LA APL.
                     salir = true;
                     break;
                 default:
@@ -52,7 +52,7 @@ public class PruebaC {
 
     } //fin main
 
-    //MENU PPAL:
+    //MENU PRINCIPAL:
     private static int menuPrin() {
 
         Scanner sc = new Scanner(System.in);
@@ -78,10 +78,15 @@ public class PruebaC {
     public void conectar() {
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver"); //1. Registrar la ‘clase’ del driver - Este método se usa para registrar la clase que se utilizará como driver.
+
             /*En esta línea es importante que indiquemos:
                   el nombre de la base de datos --> qatar2022
-                  El usuario y contraseña que tengamos en nuestro gestor de base de datos phpMyAdmin*/
+                  El usuario y contraseña que tengamos en nuestro gestor de base de datos MySQL*/
+            
+            //2. Crear el objeto de conexión - Este método se utiliza para establecer conexión con la DB.
+            // aca ingresamos el camino y el nombre de la DB
+
             conexion = DriverManager.getConnection("jdbc:mysql://localhost/carrito", "root", "pabLo987$");
 
             System.out.println("**************************************");
@@ -122,7 +127,7 @@ public class PruebaC {
             System.out.println("REGISTROS DE LA TABLA CLIENTES");
            
             /*
-            Hacemos un While para recorrer toda la tabla estudiantes
+            Hacemos un While para recorrer toda la tabla clientes
             y así poder sacar todos los registros de la tabla
             */
             while (r.next()) {
@@ -136,7 +141,7 @@ public class PruebaC {
             Logger.getLogger(PruebaC.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//mostrarTablaPropietarios
+    }//mostrarTabla
    
        
         //Este método lo uso para mostrar los datos de una tabla: (executeQuery)
@@ -163,10 +168,10 @@ public class PruebaC {
             System.out.println("Escriba el DNI del cliente: ");
             int ClienDni  = k.nextInt(); //asigna la entrada de usuario a la DNI
             
-            System.out.println(" Ingrese el nombre del cliente:  ");
+            System.out.println("Ingrese el nombre del cliente:  ");
             String ClienNom = k.next(); //asigna la entrada de usuario a la variable nombre
             
-            System.out.println(" Ingrese el apellido del cliente:  ");
+            System.out.println("Ingrese el apellido del cliente:  ");
             String ClienApe = k.next(); //asigna la entrada de usuario a la variable nombre
                     
             String sql = "insert into cliente (ClienDni,ClienNom,ClienApe) values ('"+ClienDni+"','"+ClienNom+"','"+ClienApe+"')";
@@ -174,8 +179,10 @@ public class PruebaC {
                 try{
             //En la siguiente linea se crea la conexion a la Base de datos
            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/carrito", usuario, password);  
-           Statement s = con.createStatement();    //Se crea un statement
-           int m = s.executeUpdate(sql); //Se ejecuta la instruccion sql 
+           Statement s = con.createStatement();    //3. Crear la sentencia - Este método es usado para crear la sentencia.
+                                                  //Esta sentencia es la responsable de ejecutar las consultas a la DB.
+
+           int m = s.executeUpdate(sql); //Se ejecuta la instruccion sql (que paso por parametros previamente)
              if (m == 1)
                  System.out.println("Se realizo correctamente la insercion : "+sql);
              else
