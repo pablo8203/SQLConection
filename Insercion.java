@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
-Procedimiento para conectar la DB y realizar insercion de datos en la tabla y PEDIR los datos por pantalla.
+Procedimiento para conectar la DB y realizar SOLO insercion de datos en la tabla y PEDIR los datos por pantalla.
 */
 public class Insercion {
 	   
@@ -17,16 +17,16 @@ public class Insercion {
     
         String usuario="root";
         String password="pabLo987$";
-        Scanner k = new Scanner(System.in);//se crea un objeto de tipo Scanner (K) para recibir datos en la consola
+        Scanner sc = new Scanner(System.in);//se crea un objeto de tipo Scanner (K) para recibir datos en la consola
         
         System.out.println("Escriba el DNI del cliente: ");
-        int ClienDni  = k.nextInt(); //asigna la entrada de usuario a la DNI
+        int ClienDni  = sc.nextInt(); //asigna la entrada de usuario a la DNI
         
         System.out.println(" Ingrese el nombre del cliente:  ");
-        String ClienNom = k.next(); //asigna la entrada de usuario a la variable nombre
+        String ClienNom = sc.next(); //asigna la entrada de usuario a la variable nombre
         
         System.out.println(" Ingrese el apellido del cliente:  ");
-        String ClienApe = k.next(); //asigna la entrada de usuario a la variable nombre
+        String ClienApe = sc.next(); //asigna la entrada de usuario a la variable nombre
                 
         String sql = "insert into cliente (ClienDni,ClienNom,ClienApe) values ('"+ClienDni+"','"+ClienNom+"','"+ClienApe+"')";
         Connection con=null;

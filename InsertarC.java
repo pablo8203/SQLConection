@@ -2,7 +2,7 @@ package carrito.tpf;
 
 /**
 Procedimiento para conectar la DB y realizar insercion de datos en la tabla
-Sin pedir los datos por pantalla.
+Sin pedir los datos por pantalla.  
 */
 import java.sql.Connection;
 import java.sql.DriverManager;

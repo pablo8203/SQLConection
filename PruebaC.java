@@ -14,7 +14,9 @@ import java.util.logging.Logger;
  */
 public class PruebaC {
     Connection conexion = null;
-    Statement stm = null;
+    Statement sentencia = null; // 3. Crear la sentencia - Este método es usado para crear la sentencia.
+    							// Esta sentencia es la responsable de ejecutar las consultas a la DB.
+
    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -92,7 +94,7 @@ public class PruebaC {
  /*METODO PARA DESCONECTAR LA BBDD*/
     private void desconectar() {
         try {
-            conexion.close();
+            conexion.close(); // 5. Cerrar la conexión - Este método finaliza la conexión con la DB.
             System.out.println("\n************************************************************\n");
             System.out.println("La conexion a la base de datos se ha terminado");
             System.out.println("\n************************************************************");
@@ -127,8 +129,9 @@ public class PruebaC {
     //Este método lo uso para mostrar los datos de un registro de la tabla: (executeQuery)
     ResultSet buscar(String sql) {
         try {
-            stm = conexion.createStatement(); // establezco la sentencia
-            return stm.executeQuery(sql); 
+            sentencia = conexion.createStatement(); // 3.Este método es usado para crear la sentencia.
+            //Esta sentencia es la responsable de ejecutar las consultas a la DB.
+            return sentencia.executeQuery(sql);  // 4. Ejecutar consulta - Este método devuelve el resultado de una consulta (filas).
         } catch (SQLException ex) {
             Logger.getLogger(PruebaC.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -159,10 +162,10 @@ public class PruebaC {
                 try{
             //En la siguiente linea se crea la conexion a la Base de datos
            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/carrito", usuario, password);  
-           Statement s = con.createStatement();    //3. Crear la sentencia - Este método es usado para crear la sentencia.
+           Statement sentencia = con.createStatement();    //3. Crear la sentencia - Este método es usado para crear la sentencia.
                                                   //Esta sentencia es la responsable de ejecutar las consultas a la DB.
 
-           int m = s.executeUpdate(sql); //Se ejecuta la instruccion sql (que paso por parametros previamente)
+           int m = sentencia.executeUpdate(sql); //Se ejecuta la instruccion sql (que paso por parametros previamente)
              if (m == 1)
                  System.out.println("Se realizo correctamente la insercion : "+sql);
              else
@@ -192,7 +195,7 @@ public class PruebaC {
                 try {
                 	//Class.forName("com.mysql.jdbc.Driver");     
                 	con=DriverManager.getConnection("jdbc:mysql://localhost:3306/carrito", usuario, password);  
-                    Statement sentencia=conexion.createStatement();
+                    Statement sentencia = conexion.createStatement();
                     sentencia.execute(sql);   
                     System.out.println("El registro se elimino!!");
                 } catch (Exception e) {  
