@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
+/*
 Procedimiento para conectar la DB y realizar SOLO insercion de datos en la tabla y PEDIR los datos por pantalla.
 */
 public class Insercion {

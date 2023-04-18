@@ -121,7 +121,7 @@ public class PruebaC {
                 System.out.println(r.getInt("ClienDni") + " | " + r.getString("ClienNom") + " | " + r.getString("ClienApe"));// + " | " + r.getInt("EmpDep"));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PruebaC.class.getName()).log(Level.SEVERE, null, ex);
+       //     Logger.getLogger(PruebaC.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//mostrarTabla
@@ -146,7 +146,7 @@ public class PruebaC {
         private void agregarTablaEmpleados() {
         	String usuario="root";
             String password="pabLo987$";
-            Scanner sc = new Scanner(System.in);//se crea un objeto de tipo Scanner (K) para recibir datos en la consola
+            Scanner sc = new Scanner(System.in);//se crea un objeto de tipo Scanner (sc) para recibir datos en la consola
             
             System.out.println("Escriba el DNI del cliente: ");
             int ClienDni  = sc.nextInt(); //asigna la entrada de usuario a la DNI
