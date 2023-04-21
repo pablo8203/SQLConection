@@ -17,22 +17,22 @@ public class Insercion {
     
         String usuario="root";
         String password="pabLo987$";
-        Scanner sc = new Scanner(System.in);//se crea un objeto de tipo Scanner (K) para recibir datos en la consola
+        Scanner sc = new Scanner(System.in);//se crea un objeto de tipo Scanner (sc) para recibir datos en la consola
         
-        System.out.println("Escriba el DNI del cliente: ");
-        int ClienDni  = sc.nextInt(); //asigna la entrada de usuario a la DNI
+        System.out.println("Escriba el DNI del alumno: ");
+        int AlumDni  = sc.nextInt(); //asigna la entrada de usuario a la DNI
         
-        System.out.println(" Ingrese el nombre del cliente:  ");
-        String ClienNom = sc.next(); //asigna la entrada de usuario a la variable nombre
+        System.out.println(" Ingrese el nombre del alumno:  ");
+        String AlumNom = sc.next(); //asigna la entrada de usuario a la variable nombre
         
-        System.out.println(" Ingrese el apellido del cliente:  ");
-        String ClienApe = sc.next(); //asigna la entrada de usuario a la variable nombre
+        System.out.println(" Ingrese el apellido del alumno:  ");
+        String AlumApe = sc.next(); //asigna la entrada de usuario a la variable nombre
                 
-        String sql = "insert into cliente (ClienDni,ClienNom,ClienApe) values ('"+ClienDni+"','"+ClienNom+"','"+ClienApe+"')";
+        String sql = "insert into alumnos (AlumDni,AlumNom,AlumApe) values ('"+AlumDni+"','"+AlumNom+"','"+AlumApe+"')";
         Connection con=null;
             try{
         //En la siguiente linea se crea la conexion a la Base de datos
-       con=DriverManager.getConnection("jdbc:mysql://localhost:3306/carrito", usuario, password);  
+       con=DriverManager.getConnection("jdbc:mysql://localhost:3306/escuela", usuario, password);  
        Statement s = con.createStatement();    //Se crea un statement
        int m = s.executeUpdate(sql); //Se ejecuta la instruccion sql 
          if (m == 1)
