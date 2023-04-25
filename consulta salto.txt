@@ -1,0 +1,24 @@
+Hola Constanza, te comento, el método next() solo recogerá el dato hasta que encuentre un espacio, lo demás que has escrito en la línea lo ignora por completo. por eso no les toma 2 nombres o 2 o mas apellidos. Existe otro método que hace algo similar, pero en lugar de tomar el valor hasta que encuentre un espacio, toma todo hasta que encuentre un salto de  línea (presiones Enter), esto lo puede realizar con nextLine(). Acano de modicidar parte del codifo para que lo entiendan y se los comparto.
+
+Van agregar un netxline para que les consuma el saltgo de linea y leugo van a cambuar next, nextline() en ambos campos.  
+
+----- 
+
+ejemplo de codigo 
+
+Scanner sc = new Scanner(System.in);//se crea un objeto de tipo Scanner (sc) para recibir datos en la consola
+            
+            System.out.println("Escriba el DNI del cliente: ");
+            int ClienDni  = sc.nextInt(); //asigna la entrada de usuario a la DNI
+            sc.nextLine(); // Consume "\n"  // PRIMERA MODIFICACION
+            
+		System.out.println("Ingrese el nombre del cliente:  ");
+            String ClienNom = sc.nextLine();//toma hasta el salto de línea // SEGUNDA MODIFICACION nextLine()
+            
+            System.out.println("Ingrese el apellido del cliente:  ");
+            String ClienApe = sc.nextLine(); //toma hasta el salto de línea // 3RA MODIFICACION nextLine()
+                    
+            String sql = "insert into cliente (ClienDni,ClienNom,ClienApe) values ('"+ClienDni+"','"+ClienNom+"','"+ClienApe+"')";
+            Connection con=null;
+
+disculpen el apuro estoy en una reunion. prueben y me avisan cualquier cosa. slaludos a todos.
