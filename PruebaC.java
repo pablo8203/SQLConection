@@ -150,12 +150,12 @@ public class PruebaC {
             
             System.out.println("Escriba el DNI del cliente: ");
             int ClienDni  = sc.nextInt(); //asigna la entrada de usuario a la DNI
-            
+            sc.nextLine(); // Consume "\n"
             System.out.println("Ingrese el nombre del cliente:  ");
-            String ClienNom = sc.next(); //asigna la entrada de usuario a la variable nombre
+            String ClienNom = sc.nextLine();//asigna la entrada de usuario a la variable nombre
             
             System.out.println("Ingrese el apellido del cliente:  ");
-            String ClienApe = sc.next(); //asigna la entrada de usuario a la variable nombre
+            String ClienApe = sc.nextLine(); //asigna la entrada de usuario a la variable nombre
                     
             String sql = "insert into cliente (ClienDni,ClienNom,ClienApe) values ('"+ClienDni+"','"+ClienNom+"','"+ClienApe+"')";
             Connection con=null;
